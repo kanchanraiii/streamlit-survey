@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Streamlit User Experience Survey</title>
+    <meta name="title" content="Streamlit User Experience Survey">
+    <meta name="description" content="Share your experience with the Streamlit framework to help us understand the community's needs and challenges.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-url-here.com/">
+    <meta property="og:title" content="Streamlit User Experience Survey">
+    <meta property="og:description" content="Share your experience with the Streamlit framework to help us understand the community's needs and challenges.">
+    <meta property="og:image" content="https://placehold.co/1200x630/7c3aed/ffffff?text=Streamlit+Survey">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-url-here.com/">
+    <meta property="twitter:title" content="Streamlit User Experience Survey">
+    <meta property="twitter:description" content="Share your experience with the Streamlit framework to help us understand the community's needs and challenges.">
+    <meta property="twitter:image" content="https://placehold.co/1200x630/7c3aed/ffffff?text=Streamlit+Survey">
+
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .focus-ring:focus {
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5);
+            outline: none;
+        }
+        .error-message {
+            display: none;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div id="survey-container" class="container mx-auto max-w-2xl px-4 py-12">
+        
+        <!-- Header Section -->
+        <div class="text-center mb-10">
+            <svg class="mx-auto h-12 w-auto text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.562L16.25 22.5l-.648-1.938a3.375 3.375 0 00-2.685-2.685L11.25 18l1.938-.648a3.375 3.375 0 002.685-2.685L16.25 13.5l.648 1.938a3.375 3.375 0 002.685 2.685L21.75 18l-1.938.648a3.375 3.375 0 00-2.685 2.685z" />
+            </svg>
+            <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Streamlit User Survey</h1>
+            <p class="mt-4 text-lg leading-8 text-gray-600">Help us understand your experience with the Streamlit framework. Your feedback is valuable to the community!</p>
+        </div>
+
+        <!-- Survey Form -->
+        <form id="survey-form" novalidate class="bg-white p-8 rounded-2xl shadow-lg space-y-8">
+
+            <!-- Section 1: About You -->
+            <fieldset>
+                <legend class="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2 mb-4 w-full">1. About You</legend>
+                <div class="space-y-6">
+                    <div>
+                        <label for="role" class="block text-sm font-medium leading-6 text-gray-900">What is your primary role?</label>
+                        <select id="role" name="role" class="mt-2 block w-full rounded-md border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6 focus-ring">
+                            <option value="">Select a role...</option>
+                            <option>Data Scientist</option>
+                            <option>Machine Learning Engineer</option>
+                            <option>Software Developer</option>
+                            <option>Data Analyst</option>
+                            <option>Student</option>
+                            <option>Researcher</option>
+                            <option>Hobbyist</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <p class="error-message mt-2 text-sm text-red-600" id="role-error">Please select your role.</p>
+                        
+                        <div id="other-role-container" class="hidden mt-4">
+                            <label for="other-role" class="block text-sm font-medium leading-6 text-gray-900">Please specify your role:</label>
+                            <div class="mt-2">
+                                <input type="text" name="other-role" id="other-role" class="block w-full rounded-md border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6 focus-ring">
+                            </div>
+                            <p class="error-message mt-2 text-sm text-red-600" id="other-role-error">Please specify your role.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium leading-6 text-gray-900">How would you rate your experience with Streamlit?</p>
+                        <div id="experience-group" class="mt-4 space-y-2 sm:space-y-0 sm:flex sm:space-x-4">
+                            <div class="flex items-center"><input id="exp-beginner" name="experience" type="radio" value="Beginner" class="h-4 w-4 border-gray-300 text-purple-600 focus:ring-purple-600 focus-ring"><label for="exp-beginner" class="ml-3 block text-sm font-medium leading-6 text-gray-900">Beginner</label></div>
+                            <div class="flex items-center"><input id="exp-intermediate" name="experience" type="radio" value="Intermediate" class="h-4 w-4 border-gray-300 text-purple-600 focus:ring-purple-600 focus-ring"><label for="exp-intermediate" class="ml-3 block text-sm font-medium leading-6 text-gray-900">Intermediate</label></div>
+                            <div class="flex items-center"><input id="exp-advanced" name="experience" type="radio" value="Advanced" class="h-4 w-4 border-gray-300 text-purple-600 focus:ring-purple-600 focus-ring"><label for="exp-advanced" class="ml-3 block text-sm font-medium leading-6 text-gray-900">Advanced</label></div>
+                        </div>
+                        <p class="error-message mt-2 text-sm text-red-600" id="experience-error">Please rate your experience.</p>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Section 2: Deployment & Uptime -->
+            <fieldset>
+                <legend class="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2 mb-4 w-full">2. App Deployment</legend>
+                <div class="space-y-6">
+                    <div>
+                        <p class="text-sm font-medium leading-6 text-gray-900">Where do you typically deploy your Streamlit apps? (Select all that apply)</p>
+                        <div id="deployment-group" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="relative flex items-start"><div class="flex h-6 items-center"><input id="deploy-community" name="deployment" type="checkbox" value="Streamlit Community Cloud" class="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-600 focus-ring"></div><div class="ml-3 text-sm leading-6"><label for="deploy-community" class="font-medium text-gray-900">Streamlit Community Cloud</label></div></div>
+                            <div class="relative flex items-start"><div class="flex h-6 items-center"><input id="deploy-hf" name="deployment" type="checkbox" value="Hugging Face Spaces" class="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-600 focus-ring"></div><div class="ml-3 text-sm leading-6"><label for="deploy-hf" class="font-medium text-gray-900">Hugging Face Spaces</label></div></div>
+                            <div class="relative flex items-start"><div class="flex h-6 items-center"><input id="deploy-aws" name="deployment" type="checkbox" value="AWS (EC2, Fargate, etc.)" class="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-600 focus-ring"></div><div class="ml-3 text-sm leading-6"><label for="deploy-aws" class="font-medium text-gray-900">AWS (EC2, Fargate, etc.)</label></div></div>
+                            <div class="relative flex items-start"><div class="flex h-6 items-center"><input id="deploy-gcp" name="deployment" type="checkbox" value="Google Cloud (GCE, Cloud Run)" class="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-600 focus-ring"></div><div class="ml-3 text-sm leading-6"><label for="deploy-gcp" class="font-medium text-gray-900">Google Cloud (GCE, Cloud Run)</label></div></div>
+                            <div class="relative flex items-start"><div class="flex h-6 items-center"><input id="deploy-azure" name="deployment" type="checkbox" value="Microsoft Azure" class="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-600 focus-ring"></div><div class="ml-3 text-sm leading-6"><label for="deploy-azure" class="font-medium text-gray-900">Microsoft Azure</label></div></div>
+                            <div class="relative flex items-start"><div class="flex h-6 items-center"><input id="deploy-heroku" name="deployment" type="checkbox" value="Heroku" class="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-600 focus-ring"></div><div class="ml-3 text-sm leading-6"><label for="deploy-heroku" class="font-medium text-gray-900">Heroku</label></div></div>
+                            <div class="relative flex items-start"><div class="flex h-6 items-center"><input id="deploy-other" name="deployment" type="checkbox" value="Other (On-prem, etc.)" class="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-600 focus-ring"></div><div class="ml-3 text-sm leading-6"><label for="deploy-other" class="font-medium text-gray-900">Other (On-prem, etc.)</label></div></div>
+                            <div class="relative flex items-start sm:col-span-2"><div class="flex h-6 items-center"><input id="deploy-none" name="deployment" type="checkbox" value="Not yet deployed" class="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-600 focus-ring"></div><div class="ml-3 text-sm leading-6"><label for="deploy-none" class="font-medium text-gray-900">Not yet deployed</label></div></div>
+                        </div>
+                        <p class="error-message mt-2 text-sm text-red-600" id="deployment-error">Please select at least one option.</p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium leading-6 text-gray-900">Have you ever had issues with deployed apps becoming unresponsive?</p>
+                        <div id="sleep-group" class="mt-4 space-y-2 sm:space-y-0 sm:flex sm:space-x-6">
+                            <div class="flex items-center"><input id="sleep-yes" name="app-sleep" type="radio" value="Yes" class="h-4 w-4 border-gray-300 text-purple-600 focus:ring-purple-600 focus-ring"><label for="sleep-yes" class="ml-3 block text-sm font-medium leading-6 text-gray-900">Yes</label></div>
+                            <div class="flex items-center"><input id="sleep-no" name="app-sleep" type="radio" value="No" class="h-4 w-4 border-gray-300 text-purple-600 focus:ring-purple-600 focus-ring"><label for="sleep-no" class="ml-3 block text-sm font-medium leading-6 text-gray-900">No</label></div>
+                            <div class="flex items-center"><input id="sleep-sometimes" name="app-sleep" type="radio" value="Sometimes" class="h-4 w-4 border-gray-300 text-purple-600 focus:ring-purple-600 focus-ring"><label for="sleep-sometimes" class="ml-3 block text-sm font-medium leading-6 text-gray-900">Sometimes</label></div>
+                        </div>
+                        <p class="error-message mt-2 text-sm text-red-600" id="sleep-error">Please select an option.</p>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Email for Updates -->
+            <div class="border-t border-gray-200 pt-8">
+                <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Get updates from the community</label>
+                <div class="mt-2">
+                    <input type="email" name="email" id="email" class="block w-full rounded-md border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6 focus-ring" placeholder="you@example.com" required>
+                </div>
+                 <p class="error-message mt-2 text-sm text-red-600" id="email-error">Please enter a valid email address.</p>
+                 <p class="mt-2 text-xs text-gray-500">Your email will not be shared.</p>
+            </div>
+
+            <!-- Submission Button -->
+            <div class="pt-2">
+                <div class="flex justify-end">
+                    <button id="submit-button" type="submit" class="w-full sm:w-auto rounded-md bg-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 transition-colors">
+                        Submit Feedback
+                    </button>
+                </div>
+                 <p id="submit-error" class="error-message mt-4 text-sm text-red-600 text-right">An error occurred. Please try again later.</p>
+            </div>
+        </form>
+        
+        <!-- Footer -->
+        <footer class="mt-10 text-center text-sm text-gray-500">
+            <p>Thank you for your time and valuable input!</p>
+        </footer>
+
+    </div>
+
+    <!-- Success Message -->
+    <div id="success-message" class="hidden container mx-auto max-w-2xl px-4 py-12 text-center">
+        <svg class="mx-auto h-16 w-auto text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Thank You!</h1>
+        <p class="mt-4 text-lg leading-8 text-gray-600">Your feedback has been successfully submitted. We appreciate you taking the time to help the community.</p>
+    </div>
+
+    <script>
+        const form = document.getElementById('survey-form');
+        const submitButton = document.getElementById('submit-button');
+        const webhookUrl = 'https://discord.com/api/webhooks/1404166203768963123/DwuZ2xI7t1WxOasGdjy7ffkBdxA4h3imY6wNCgwfty0GA5yz18etgh7Ydwids25RuAcX';
+
+        // --- Event Listeners for dynamic fields ---
+        const roleSelect = document.getElementById('role');
+        const otherRoleContainer = document.getElementById('other-role-container');
+        roleSelect.addEventListener('change', () => {
+            otherRoleContainer.style.display = (roleSelect.value === 'Other') ? 'block' : 'none';
+        });
+
+        const deploymentCheckboxes = form.querySelectorAll('input[name="deployment"]');
+        const noneCheckbox = document.getElementById('deploy-none');
+        deploymentCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                if (checkbox === noneCheckbox && checkbox.checked) {
+                    deploymentCheckboxes.forEach(cb => { if (cb !== noneCheckbox) cb.checked = false; });
+                } else if (checkbox !== noneCheckbox && checkbox.checked) {
+                    noneCheckbox.checked = false;
+                }
+            });
+        });
+
+        // --- Validation Logic ---
+        function validateField(id, condition) {
+            const errorElement = document.getElementById(`${id}-error`);
+            const fieldElement = document.getElementById(id);
+            if (condition) {
+                errorElement.style.display = 'none';
+                return true;
+            }
+            errorElement.style.display = 'block';
+            return fieldElement || errorElement.previousElementSibling;
+        }
+
+        function validateForm() {
+            let firstInvalidElement = null;
+            const setFirstInvalid = (el) => { if (!firstInvalidElement) firstInvalidElement = el; };
+
+            // Validate Role
+            const roleEl = validateField('role', roleSelect.value !== '');
+            if (roleEl !== true) setFirstInvalid(roleEl);
+
+            // Validate Other Role if visible
+            if (otherRoleContainer.style.display === 'block') {
+                const otherRoleInput = document.getElementById('other-role');
+                const otherRoleEl = validateField('other-role', otherRoleInput.value.trim() !== '');
+                if (otherRoleEl !== true) setFirstInvalid(otherRoleEl);
+            }
+
+            // Validate Experience
+            const experience = form.querySelector('input[name="experience"]:checked');
+            const expEl = validateField('experience', experience !== null);
+            if (expEl !== true) setFirstInvalid(document.getElementById('experience-group'));
+
+            // Validate Deployment
+            const deployments = form.querySelectorAll('input[name="deployment"]:checked');
+            const depEl = validateField('deployment', deployments.length > 0);
+            if (depEl !== true) setFirstInvalid(document.getElementById('deployment-group'));
+            
+            // Validate App Sleep
+            const appSleep = form.querySelector('input[name="app-sleep"]:checked');
+            const sleepEl = validateField('sleep', appSleep !== null);
+            if (sleepEl !== true) setFirstInvalid(document.getElementById('sleep-group'));
+
+            // Validate Email
+            const emailInput = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const emailEl = validateField('email', emailInput.value !== '' && emailRegex.test(emailInput.value));
+            if (emailEl !== true) setFirstInvalid(emailEl);
+
+            if (firstInvalidElement) {
+                firstInvalidElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                if (typeof firstInvalidElement.focus === 'function') {
+                    firstInvalidElement.focus();
+                }
+                return false;
+            }
+            return true;
+        }
+
+        // --- Form Submission Logic ---
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            document.getElementById('submit-error').style.display = 'none';
+
+            if (!validateForm()) return;
+
+            submitButton.disabled = true;
+            submitButton.innerHTML = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Submitting...`;
+
+            const formData = new FormData(form);
+            let role = formData.get('role');
+            if (role === 'Other') {
+                role = `Other: ${formData.get('other-role')}`;
+            }
+            const experience = formData.get('experience');
+            const deployments = formData.getAll('deployment').join(', ') || 'None selected';
+            const appSleep = formData.get('app-sleep');
+            const email = formData.get('email');
+
+            const payload = {
+                username: "Streamlit Survey Bot",
+                avatar_url: "https://streamlit.io/images/brand/streamlit-logo-primary-colormark-darktext.png",
+                embeds: [{
+                    color: 10181046,
+                    title: "New Survey Submission!",
+                    fields: [
+                        { name: "👤 Primary Role", value: role, inline: true },
+                        { name: "⭐ Streamlit Experience", value: experience, inline: true },
+                        { name: "😴 App Unresponsive Issues?", value: appSleep, inline: true },
+                        { name: "🚀 Deployment Platforms", value: `\`\`\`${deployments}\`\`\`` },
+                        { name: "✉️ Email", value: email }
+                    ],
+                    timestamp: new Date().toISOString(),
+                    footer: { text: "Streamlit User Survey" }
+                }]
+            };
+
+            try {
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (!response.ok) throw new Error(`Server responded with ${response.status}`);
+                document.getElementById('survey-container').style.display = 'none';
+                document.getElementById('success-message').style.display = 'block';
+            } catch (error) {
+                console.error('Failed to submit form:', error);
+                document.getElementById('submit-error').style.display = 'block';
+                submitButton.disabled = false;
+                submitButton.innerHTML = 'Submit Feedback';
+            }
+        });
+    </script>
+
+</body>
+</html>
